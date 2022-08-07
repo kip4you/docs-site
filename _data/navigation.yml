@@ -1,0 +1,17 @@
+# main links
+main:
+  - title: "About"
+    url: /about
+
+
+
+# documentation links
+docs:
+  - title: "About"
+    url: /about
+  - title: "Fundamentals"
+    children:
+      - title: "Agility"
+        url: /agility 
+
+
