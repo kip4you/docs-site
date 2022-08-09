@@ -1,5 +1,8 @@
-**Adding Pubs**
-Modify the file \_data/publications.yml to add a new entry. Make sure to follow the docs format.
+**Adding Docs**
+
+- Add markdown file under under **_pages** folder
+- Add images under **_assets/images**
+- Modify **_data/navigation.yml** under **docs:** to add a reference to the new file permalink
 
 **Running locally with docker**
 
