@@ -8,10 +8,40 @@ main:
 # documentation links
 docs:
   - title: "About"
-    url: /about
+    url: /about-kip4you-pap
   - title: "Fundamentals"
     children:
+      - title: "Native Features"
+        url: /native-features 
       - title: "Agility"
         url: /agility 
+  - title: "Developers"
+    children:
+      - title: "Tenants"
+        url: /tenants 
+      - title: "Deployment Properties"
+        url: /deployment-properties
+      - title: "Guest Users"
+        url: /guest-users
+      - title: "Attachments"
+        url: /attachments
+      - title: "Notes"
+        url: /notes
+      - title: "Search Framework"
+        url: /search-framework
+      - title: "Basic Dashboards"
+        url: /dashboards-basic
+      - title: "Advanced Dashboards"
+        url: /dashboards-advanced
+      - title: "On-the-fly Dashboards"
+        url: /dashboards-on-the-fly
+      - title: "Email Connector"
+        url: /connector-email
+      - title: "Rest API Connector"
+        url: /connector-rest-api
+      - title: "ActiveMQ Connector"
+        url: /connector-activemq
+      - title: "Dynamic Forms"
+        url: /dynamic-forms
 
 

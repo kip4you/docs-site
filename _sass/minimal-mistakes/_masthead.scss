@@ -10,12 +10,13 @@
   -webkit-animation-delay: 0.15s;
   animation-delay: 0.15s;
   z-index: 20;
+  //background-color: aqua;
 
   &__inner-wrap {
     @include clearfix;
     margin-left: auto;
     margin-right: auto;
-    padding: 1em;
+    padding: 0.25em;
     max-width: 100%;
     display: -webkit-box;
     display: -ms-flexbox;
@@ -24,6 +25,7 @@
     -ms-flex-pack: justify;
     justify-content: space-between;
     font-family: $sans-serif-narrow;
+    
 
     @include breakpoint($x-large) {
       max-width: $max-width;
@@ -67,6 +69,7 @@
 
   .site-nav {
     margin-left: 0;
+    background-color: aqua;
 
     @include breakpoint($small) {
       float: right;
