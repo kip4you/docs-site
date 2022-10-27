@@ -43,5 +43,7 @@ docs:
         url: /connector-activemq
       - title: "Dynamic Forms"
         url: /dynamic-forms
+      - title: "Anonymous Task"
+        url: /anonymous-task
 
 

@@ -1,0 +1,18 @@
+I"<h1 id="deployment-properties">Deployment properties</h1>
+
+<p>Deployment properties are a mechanism used in our platform to control variability in processes.</p>
+
+<h2 id="basic-usage">Basic Usage</h2>
+
+<p>Create a process using Camunda Modeler and in the tab XPTO insert a property called YYYYY with a default value XXXX.
+When you deploy this process into the AKIP App, the platform scanned the model looking for properties and register them as deployment properties. 
+After that, you can change the default value using the form presented in the deployment page.</p>
+
+<h2 id="example-basic-usage">Example Basic Usage</h2>
+
+<h2 id="deployment-properties-and-tenant">Deployment Properties and Tenant</h2>
+
+<p>Another common use of deployment properties is associated with Tenant. For example, in a scenario where two tenants follow similar processes, we can have one process model whose variability is controlled by deployment properties.</p>
+
+<h2 id="example-deployment-properties-and-tenants">Example Deployment Properties and Tenants</h2>
+:ET
