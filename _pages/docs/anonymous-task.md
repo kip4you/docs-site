@@ -11,7 +11,7 @@ sidebar:
 
 ## What is an Anonymous Task?
 
-Anonymous Task is an activity where we can access a task anonymously, in other words, it will have an email that contains a link to lead you to the task no need to have an account in the website, accessing as if a guest.
+Anonymous Task is an activity where we can access a task anonymously, in other words, it will have an email that contains a link to lead you to the task without the need to have an account in the website, accessing as if a guest.
 
 ## 1. Camunda
 
@@ -24,21 +24,33 @@ This way:
 
 ![Service Task, Send Task and then the Quote Item task](assets/images/anonymous-task/QuoteItemAnonimo.png)
 
-Clicking in the Service Task (Akip Configure Anonymous Task) we must indicate in the delegate section ${akipConfigureAnonymousTaskDelegate} that refers to an existing compiled class in the architecture of reference.
+Clicking in the Service Task (Akip Configure Anonymous Task) we must indicate in the delegate section **${akipConfigureAnonymousTaskDelegate}** that refers to an existing compiled class in the architecture of reference.
 
 ![Service Task delegate configuration](assets/images/anonymous-task/BPMNconfig.png){:style="display:block; margin-left:auto; margin-right:auto"}
 
+In the Send Task (Email to Provider) we need to first add in Implementation a **Delegate expression** and the expression ${akipEmailConnectorDelegate} calling a delegate that will be generated with the project referring to a compiled class.
+
+![Send Task Implementation](./assets/images/anonymous-task/EmailConnector.png){:style="display:block; margin-left:auto; margin-right:auto"}
+
+Also in the Send Task (Email to Provider) we must add a field injection, putting the name **akipEmailConnectorConfigName**, type **String** and then the value **QuotationProcess.EmailToProvider** (name of the process dot name of the task)
+
+![Send Task Field Injection](./assets/images/anonymous-task/EmailFieldInj.png){:style="display:block; margin-left:auto; margin-right:auto"}
+
+The last Camunda configuration we need to do is in the User Task Quote Item, adding **anonymousUser** to the candidate groups.
+
+![User Task Candidate groups](./assets/images/anonymous-task/UserTaskCandidate.png){:style="display:block; margin-left:auto; margin-right:auto"}
+
 ## 2. Project Generation
 
-Before we pass to the coding the anonymous task, we need first to install the AgileKIP Generator to execute the project using the jhipster bluepirnt, after this we need to create the metadata of the domain, entities and their relations. To create the project step by step it's recommended to read the tutorial [here](https://agilekip.github.io/pap-documentation/tutorials/generating-an-app){:style="color: blue"}
+Before we pass to the coding the anonymous task, we need first to install the AgileKIP Generator to execute the project using the jhipster blueprint, after this we need to create the metadata of the domain, entities and their relations. To create the project step by step it's recommended to read the tutorial [here](https://agilekip.github.io/pap-documentation/tutorials/generating-an-app){:style="color: blue"}
 
 ## 3. Into the code (backend)
 
-In the code of the generated code initially, we need to find in out project the file Controller related to the task, in our example is TaskQuoteItemController.
+In the code of the generated project, initially we need to find the file Controller related to the task, in our example is TaskQuoteItemController.
 
 ![Path to controller](assets/images/anonymous-task/PathController.png){:style="display:block; margin-left:auto; margin-right:auto"}
 
-It's indicated that in the Controller, we change the **@RequestMapping("/api/...")** to **@RequestMapping("/api")**, and then in the **@GettingMapping** and **PostMapping** use the part that was removed in the @RequestMapping, like this:
+It's indicated that in the Controller, we change the **@RequestMapping("/api/...")** to just **@RequestMapping("/api")**, and then in the **@GettingMapping** and **PostMapping** use the part that was removed in the @RequestMapping, like this:
 
 ```java
 @RequestMapping("/api")
