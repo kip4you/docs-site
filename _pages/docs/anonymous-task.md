@@ -56,8 +56,6 @@ It's indicated that in the Controller, we change the **@RequestMapping("/api/...
 @RequestMapping("/api")
 ```
 
-
-
 ```java
 @GetMapping("/quotation-process/task-quote-item/{id}")
     public ResponseEntity<TaskQuoteItemContextDTO> loadContext(@PathVariable Long id) {
@@ -71,11 +69,21 @@ After this, for each one of the **@GetMapping** and **@PostMapping** we must do 
 
 In the image below, when we create the copy for each one, we must pass in the start of the URL the **"/public"** to indicate that this will be a public URL, moreover in the final os the URL we need to write the id of the process instance (**processInstanceId**) informing the instance of the process, as well as the Token (**accessTokenNumber**) that will be generated unique for each provider that need to quote items in our case.  
 
-![GetMapping for public](assets/images/anonymous-task/PublicGetMappingExemplo.png)
+```java
+@GetMapping("/public/quotation-process/task-quote-item/{processInstanceId}/{accessTokenNumber}")
+    public ResponseEntity<TaskQuoteItemContextDTO> loadContextPublic(
+        @PathVariable Long processInstanceId,
+        @PathVariable String accessTokenNumber
+    ) {
+        log.debug("REST request to load the context of task hotel {}", processInstanceId, accessTokenNumber);
+        TaskQuoteItemContextDTO taskQuoteItemContext = taskQuoteItemService.loadContextPublic(processInstanceId, accessTokenNumber);
+        return ResponseEntity.ok(taskQuoteItemContext);
+    }
+```
 
 In addition, we must replace the method **loadContext** to **loadContextPublic** and pass the two variables of the URL, **processInstanceId** and **accessTokenNumber** as parameters. The creation of this method will be done in a step further.
 
-Following the red marks in the image, we must change the **log.debug**, passing again the respective variables, **processInstanceId** and **accessTokenNumber**.
+We must change the **log.debug**, passing again the respective variables, **processInstanceId** and **accessTokenNumber**.
 
 Lastly, we use the instance of the service in our task, passing now **loadContextPublic** and the two parameters, **processInstanceId** and **accessTokenNumber**. Following this same logic we gonna create a copy of **claim**. 
 
@@ -102,7 +110,7 @@ When we create the copy of the complete, we only need to change the URL adding t
     }
 ```
 
-With this we finished the necessary changes for te Controller in the Anonymous Task. The next step is to implement te public methods that we create (loadContextPublic, claimPublic and completePublic). To do this we'll go to the Service located in:
+With this we finished the necessary changes for the Controller in the Anonymous Task. The next step is to implement the public methods that we create (loadContextPublic, claimPublic and completePublic). To do this we'll go to the Service located in:
 
 ![Location of the Service in the backend](./assets/images/anonymous-task/ServiceMarcado.png){:style="display:block; margin-left:auto; margin-right:auto"}
 
@@ -186,7 +194,7 @@ const baseApiUrlPublic = 'api/public/quotation-process/task-quote-item';
 const baseApiUrl = 'api/quotation-process/task-quote-item';
 ```
 
-After this, we create the methods **loadContextPublic**, **claimPublic** and **completedPublic**, where their gets and posts follow the same rote that was created in the Controller of the task.
+After this, we create the methods **loadContextPublic**, **claimPublic** and **completedPublic**, where their gets and posts follow the same way that was created in the Controller of the task.
 
 **loadContextPublic:**
 
@@ -257,7 +265,7 @@ beforeRouteEnter(to, from, next) {
   }
 ```
 
-Inside the retriveContext method we call the method **loadContextPublic** passing **processInstanceId** and **accessTokenNumber**, finishing the public-details.component.ts.
+Inside the retrieveContext method we call the method **loadContextPublic** passing **processInstanceId** and **accessTokenNumber**, finishing the public-details.component.ts.
 
 ```java
 public retrieveContext(processInstanceId, accessTokenNumber) {
