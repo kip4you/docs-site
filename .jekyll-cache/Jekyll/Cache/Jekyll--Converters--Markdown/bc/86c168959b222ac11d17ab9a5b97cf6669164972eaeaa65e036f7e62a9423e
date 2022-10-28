@@ -1,10 +1,10 @@
-I"�^<h1 id="subprocess">Subprocess</h1>
+I"M_<h1 id="subprocess">Subprocess</h1>
 
-<h2 id="working-with-subprocess">Working with subprocess</h2>
+<h2 id="working-with-subprocess">Working with Subprocess</h2>
 <p>A sub-process is a means of entering a flow of an alternate process during the execution of the main process.<br />
 To better understand how the creation of a subprocess is performed, the example of a quotation application will be used.</p>
 
-<h2 id="lets-do-a-example">Let’s do a example</h2>
+<h2 id="camunda-configuration">Camunda Configuration</h2>
 
 <p>The first thing we will do is create a task and define it as a sub-process by selecting
 <strong>Call Activity</strong> and <strong>Parallel Multi-Instance</strong> as shown in the red underline in the image below:</p>
@@ -28,9 +28,24 @@ field will be enabled where we will define <strong>#{quotationProcess.getQuotati
 
 <p><img src="assets/images/subprocess/TaskSubprocessProperties_configureCalledElement.png" alt="Subprocess properties Configure Called Element" style="display:block; margin-left:auto; margin-right:auto" /></p>
 
-<p>Then create a <strong>Java Delegate</strong> class with the name <em>quotationProcessVarMappingDelegate</em> that implements the <strong>DelegateVariableMapping</strong> interface, 
-this is necessary because we need to change the <strong>ProcessEntity</strong> reference from <strong>RequestForQuotationProcess</strong> to <strong>QuotationProcess</strong>, 
-when this exchange of reference is performed on the <strong>ProcessEntity</strong>, 
+<p>Then create a Service Task with the name <em>Create Quotation Processes</em> 
+in the <strong>Delegate Expression</strong> tab, insert this name <em>requestForQuotationProcessTaskCreateQuotationProcessesDelegate</em>.</p>
+
+<p><img src="assets/images/subprocess/ServiceTaskCreateQuotationProcesses.png" alt="Service Task Create Quotation Processes" style="display:block; margin-left:auto; margin-right:auto" /></p>
+
+<p>Finally, inside the BPMN of the subprocess, create a Service Task with the name of <em>Setup Subprocess</em> and in the <strong>implementation</strong> tab define:</p>
+
+<p><strong>Type</strong>: Delegate Expression
+<br />
+<strong>Delegate Expression</strong>: quotationProcessTaskSetupProcessDelegate</p>
+
+<p><img src="assets/images/subprocess/SetupSubprocesssTaskConfigure.png" alt="Setup SubProcess Task Configure" style="display:block; margin-left:auto; margin-right:auto" /></p>
+
+<h2 id="backend-configuration">Backend Configuration</h2>
+
+<p>After preparing all the necessary tasks in camunda we will make some changes to the generated code, create a <strong>Java Delegate</strong> class with the name <em>quotationProcessVarMappingDelegate</em> that implements the <strong>DelegateVariableMapping</strong> interface,
+this is necessary because we need to change the <strong>ProcessEntity</strong> reference from <strong>RequestForQuotationProcess</strong> to <strong>QuotationProcess</strong>,
+when this exchange of reference is performed on the <strong>ProcessEntity</strong>,
 the <strong>QuotationProcess</strong> also receives a reference to <strong>RequestForQuotationProcess</strong> so that the reference of the previous process is not lost.</p>
 
 <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@Component</span>
@@ -49,13 +64,9 @@ the <strong>QuotationProcess</strong> also receives a reference to <strong>Reque
     <span class="kd">public</span> <span class="kt">void</span> <span class="nf">mapOutputVariables</span><span class="o">(</span><span class="nc">DelegateExecution</span> <span class="n">delegateExecution</span><span class="o">,</span> <span class="nc">VariableScope</span> <span class="n">variableScope</span><span class="o">)</span> <span class="o">{}</span>
 <span class="o">}</span>
 </code></pre></div></div>
-<p>After we prepare our subprocess, we will create a Service Task with the name <em>Create Quotation Processes</em> 
-implementing the <strong>Delegate Expression</strong> <em>requestForQuotationProcessTaskCreateQuotationProcessesDelegate</em>.</p>
 
-<p><img src="assets/images/subprocess/ServiceTaskCreateQuotationProcesses.png" alt="Service Task Create Quotation Processes" style="display:block; margin-left:auto; margin-right:auto" /></p>
-
-<p>Create a <strong>Java Delegate</strong> interface with the same name of <strong>Delegate Expression</strong>,
-being responsible for preparing the list of subprocesses and instantiating the quotationProcess information for the subprocess..</p>
+<p>Create a <strong>Java Delegate</strong> interface with the name of <em>requestForQuotationProcessTaskCreateQuotationProcessesDelegate</em> implementing <strong>JavaDelegate</strong>,
+being responsible for preparing the list of subprocesses and instantiating the quotationProcess information for the subprocess.</p>
 
 <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@Component</span>
 <span class="kd">public</span> <span class="kd">class</span> <span class="nc">RequestForQuotationProcessTaskCreateQuotationProcessesDelegate</span> <span class="kd">implements</span> <span class="nc">JavaDelegate</span> <span class="o">{</span>
@@ -125,15 +136,7 @@ being responsible for preparing the list of subprocesses and instantiating the q
 
 </code></pre></div></div>
 
-<p>Finally, inside the BPMN of the subprocess, create a service task with the name of Setup Subprocess and in the <strong>implementation</strong> tab define:</p>
-
-<p><strong>Type</strong>: Delegate Expression
-<br />
-<strong>Delegate Expression</strong>: quotationProcessTaskSetupProcessDelegate</p>
-
-<p><img src="assets/images/subprocess/SetupSubprocesssTaskConfigure.png" alt="Setup SubProcess Task Configure" style="display:block; margin-left:auto; margin-right:auto" /></p>
-
-<p>After that create a <strong>Java Delegate</strong> class with the same name defined in <strong>Delegate Expression</strong> that implements the <strong>JavaDelegate</strong> interface,
+<p>After that create a <strong>Java Delegate</strong> class with the name <em>QuotationProcessTaskSetupProcessDelegate</em> that implements the <strong>JavaDelegate</strong> interface,
 this part is necessary to instantiate the <strong>ProcessInstance</strong> so that there are no problems when executing the subprocess.</p>
 
 <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@Component</span>
@@ -188,6 +191,5 @@ this part is necessary to instantiate the <strong>ProcessInstance</strong> so th
 <span class="o">}</span>
 </code></pre></div></div>
 
-<p>Congratulations, you’ve just create a subprocess!<br />
-Now if necessary make changes to solve your problem.</p>
+<p>Congratulations, you’ve just create a subprocess!</p>
 :ET
