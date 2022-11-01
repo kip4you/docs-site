@@ -1,0 +1,16 @@
+I"5<ul class="toc__menu">
+  <li><a href="#notes">Notes</a>
+    <ul>
+      <li><a href="#overview">Overview</a></li>
+      <li><a href="#front-ent-components">Front-ent components</a>
+        <ul>
+          <li><a href="#akip-notes-component">&lt;akip-notes&gt; component</a></li>
+          <li><a href="#akip-notes-task-instance-component">&lt;akip-notes-task-instance&gt; component</a></li>
+        </ul>
+      </li>
+      <li><a href="#customizing-our-notes">Customizing our notes</a></li>
+      <li><a href="#how-to-use">How to use</a></li>
+    </ul>
+  </li>
+</ul>
+:ET
