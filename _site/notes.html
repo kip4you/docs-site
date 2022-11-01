@@ -432,31 +432,33 @@ the end of the global.json in the i18n folder.</p>
 
 <h2 id="customizing-the-component">Customizing the Component</h2>
 
-<p>You can pass props to the component
-for the purpose of customizing it. Below are some properties you can use:</p>
+<p>You can pass props to the component. Below are some properties you can use:</p>
 
-<p><strong>TaskInstance: ITaskInstance</strong></p>
+<p><strong>TaskInstance: ITaskInstance</strong> In TaskInstance, you will pass the process taskContext and taskInstance proviniente, as shown in the example below:</p>
 
-<p><strong>Default: false</strong><br />
-<strong>readonly: boolean</strong></p>
+<p><code class="language-plaintext highlighter-rouge">:taskInstance="taskContext.taskInstance"</code></p>
 
-<p><strong>noteTypes: String[]</strong></p>
+<p><strong>readonly: boolean:</strong> By default readonly starts as false,</p>
 
-<p><strong>Default: false</strong><br />
-<strong>isPublic: boolean</strong></p>
+<p><strong>noteTypes: String[]:</strong> In noteTypes, you can define types that the notes will have for this just put the props in the component as shown in the example below:</p>
 
-<p><strong>Default: false</strong><br />
-<strong>hideNotesInfos: boolean</strong></p>
+<p><code class="language-plaintext highlighter-rouge">:noteTypes="['provider'', 'customer']</code></p>
 
-<p><strong>Default: ‘label.notes’</strong><br />
-<strong>title: string</strong></p>
+<p><strong>isPublic: boolean:</strong> By default isPublic starts as false,</p>
 
-<p><strong>otherEntities: INoteEntity[]</strong></p>
+<p><strong>hideNotesInfos: boolean:</strong> By default hideNotesInfos starts as false.</p>
 
-<p><strong>Default: default() {
-return { showNotes: true };
-}</strong><br />
-<strong>collapseControllerProp: any</strong></p>
+<p><strong>title: string:</strong> The title if not used as props, it uses the label.notes by default.</p>
+
+<p><strong>otherEntities: INoteEntity[]</strong> To use de a props de otherEntity, you must use the following structure:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>{
+    entityName: 'quoteItemService',
+    entityId: taskContext.quoteItemService.id,
+}
+</code></pre></div></div>
+
+<p><strong>collapseControllerProp: any</strong></p>
 
         
       </section>

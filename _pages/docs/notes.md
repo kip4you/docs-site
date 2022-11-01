@@ -59,29 +59,30 @@ the end of the global.json in the i18n folder.
 
 ## Customizing the Component
 
-You can pass props to the component
-for the purpose of customizing it. Below are some properties you can use:
 
-**TaskInstance: ITaskInstance**
+You can pass props to the component. Below are some properties you can use:
 
-**Default: false**\
-**readonly: boolean**
+**TaskInstance: ITaskInstance** In TaskInstance, you will pass the process taskContext and taskInstance proviniente, as shown in the example below:
 
-**noteTypes: String[]**
+```:taskInstance="taskContext.taskInstance"```
 
-**Default: false**\
-**isPublic: boolean**
+**readonly: boolean:** By default readonly starts as false,
 
-**Default: false**\
-**hideNotesInfos: boolean**
+**noteTypes: String[]:** In noteTypes, you can define types that the notes will have for this just put the props in the component as shown in the example below:
 
-**Default: 'label.notes'**\
-**title: string**
+``` :noteTypes="['provider'', 'customer'] ```
 
-**otherEntities: INoteEntity[]**
+**isPublic: boolean:** By default isPublic starts as false,
 
+**hideNotesInfos: boolean:** By default hideNotesInfos starts as false.
 
-**Default: default() {
-return { showNotes: true };
-}**\
+**title: string:** The title if not used as props, it uses the label.notes by default.
+
+**otherEntities: INoteEntity[]** To use de a props de otherEntity, you must use the following structure:
+ 
+    {
+        entityName: 'quoteItemService',
+        entityId: taskContext.quoteItemService.id,
+    }
+    
 **collapseControllerProp: any**
