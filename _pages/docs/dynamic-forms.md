@@ -49,3 +49,92 @@ For the form fields we have some types to choose from, but new types will still 
 This configuration field is the same as shown in the previous section and appears as follows on the page:
 
 ![Page String](assets/images/dynamic-forms/type_string.png)
+
+#### Enum
+
+The configuration of the enum type is a little different and is displayed differently as well, first we will show the configuration and what can be done with it.
+
+![Type Enum](assets/images/dynamic-forms/type_enum.png)
+
+Here we have some additional fields to configure, you can add as many values ​​as you want to the enum, just click on the "+" on the right side of Add Value.
+
+After that, just fill in the id field and the name field, the id field being the name of the variable (you will use it to reference in the code) and the name to define how the option will appear for the user.
+
+How it would look on the page:
+
+![Page Enum](assets/images/dynamic-forms/page_enum.png)
+
+Remember that if you are going to do some verification on a gateway or **if you are going to use these values in some expression use the id**
+
+#### Custom Type
+
+The Custom Type for now has two values available, one for attachments and one for notes, let's take a look at them 
+
+##### Akip Notes
+
+This type is a field where it is possible to enter notes separately, first let's take a look at the configuration
+
+![Type Akip Notes](assets/images/dynamic-forms/type_akip_notes.png)
+
+To work you have to insert "AkipNotesField" in the field that will appear below the custom type, otherwise it's just the configuration seen previously
+
+How it will look on the page:
+
+![Page Akip Notes 1](assets/images/dynamic-forms/page_akip_notes_1.png)
+![Page Akip Notes 2](assets/images/dynamic-forms/page_akip_notes_2.png)
+![Page Akip Notes 2](assets/images/dynamic-forms/page_akip_notes_3.png)
+
+the "Type" area I will explain later in the *properties* section
+
+##### Akip Attachments
+
+This field works more or less like Akip Notes with the difference that they are not notes but attachments, let's see the configuration
+
+![Type Akip Attachments](assets/images/dynamic-forms/type_akip_attachments.png)
+
+It is practically the same configuration as Akip Notes with the difference that instead of being AkipNotesField it is AkipAttachmentsField
+
+How it looks on the page:
+
+![Page Akip Attachments 1](assets/images/dynamic-forms/page_akip_attachments_1.png)
+![Page Akip Attachments 2](assets/images/dynamic-forms/page_akip_attachments_2.png)
+
+Just remembering that here it is necessary to configure some storage of objects such as minio for example, this configuration can be seen in the specific section of attachments
+
+### Properties
+
+In this section we will see 4 properties that are very important for the definition of dynamic forms
+
+#### readonly
+
+As the forms are not customized in the frontend or backend code, some customizations can be made by the properties, for example leaving a field read-only, which is the case of this property here
+
+This is very useful when in a task you want the user to only see previously entered information.
+
+![Propertie Readonly](assets/images/dynamic-forms/propertie_readonly.png)
+
+How it looks on the page:
+
+![Page Readonly](assets/images/dynamic-forms/page_readonly.png)
+
+#### disable
+
+#### noteTypes
+
+When you have a notes field and you want only certain tasks to see those notes, you use this property
+
+![Propertie Note Types](assets/images/dynamic-forms/propertie_noteTypes.png)
+
+![Page Note Types](assets/images/dynamic-forms/page_noteTypes.png)
+
+Only fields that have the noteTypes = User property will be able to see these notes, and you can add more than one type to a note field
+
+#### attachmentTypes
+
+It follows the same line as noteTypes, but now they are attachments that will be typed to have a control whether it will be shown or not
+
+![Propertie Note Types](assets/images/dynamic-forms/propertie_attachmentTypes.png)
+
+![Page Note Types](assets/images/dynamic-forms/page_attachmentTypes.png)
+
+Only fields that have the property attachmentTypes = PostDocument will be able to see these attachments, and you can add more than one type to an attachment field
