@@ -1,0 +1,14 @@
+I"û<ul class="toc__menu">
+  <li><a href="#advanced-dashboards">Advanced Dashboards</a>
+    <ul>
+      <li><a href="#dashboardgroupbuilder-interfaces">DashboardGroupBuilder interfaces</a>
+        <ul>
+          <li><a href="#dashboardboxgroupbuilder-interface">DashboardBoxGroupBuilder interface</a></li>
+          <li><a href="#dashboardtablegroupbuilder-interface">DashboardTableGroupBuilder interface</a></li>
+        </ul>
+      </li>
+      <li><a href="#examples">Examples</a></li>
+    </ul>
+  </li>
+</ul>
+:ET
