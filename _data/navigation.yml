@@ -27,6 +27,8 @@ docs:
         url: /attachments
       - title: "Notes"
         url: /notes
+      - title: "Notify"
+        url: /notify
       - title: "Search Framework"
         url: /search-framework
       - title: "Basic Dashboards"
