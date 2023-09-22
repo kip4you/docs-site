@@ -1,0 +1,10 @@
+I"¦<h1 id="email-connector">Email Connector</h1>
+
+<h2 id="1-camunda">1. Camunda</h2>
+
+<p>Initially to create an Email, we need to configure our Camunda BPMN.</p>
+
+<p><img src="./assets/images/email-connector/BPMNEmail.png" alt="Simple example of BPMN" /></p>
+
+<p>In this case it is common to have a task before send the Email in our case we have the Assess Quotation task a User Task, that simply approve or dissaprove a</p>
+:ET
