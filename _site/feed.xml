@@ -1,1 +1,6 @@
+<<<<<<< HEAD
 <?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.0">Jekyll</generator><link href="http://0.0.0.0:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://0.0.0.0:4000/" rel="alternate" type="text/html" /><updated>2023-09-22T18:42:56-05:00</updated><id>http://0.0.0.0:4000/feed.xml</id><title type="html">Kip4You</title><subtitle>A passionate team to investigate  aspects related to Agile and Knowledge Intensive Processes.</subtitle><author><name>Kip4You Team</name></author></feed>
+=======
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.0">Jekyll</generator><link href="http://0.0.0.0:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://0.0.0.0:4000/" rel="alternate" type="text/html" /><updated>2022-10-31T13:43:23-05:00</updated><id>http://0.0.0.0:4000/feed.xml</id><title type="html">Kip4You</title><subtitle>A passionate team to investigate  aspects related to Agile and Knowledge Intensive Processes.</subtitle><author><name>Kip4You Team</name></author></feed>
+
+>>>>>>> e56b86bea8317faac8043e75ef875a6a5833547b

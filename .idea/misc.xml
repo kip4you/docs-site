@@ -1,5 +1,15 @@
+<<<<<<< HEAD
+=======
+<?xml version="1.0" encoding="UTF-8"?>
+>>>>>>> e56b86bea8317faac8043e75ef875a6a5833547b
 <project version="4">
   <component name="ProjectRootManager">
     <output url="file://$PROJECT_DIR$/out" />
   </component>
+<<<<<<< HEAD
+=======
+  <component name="ProjectType">
+    <option name="id" value="jpab" />
+  </component>
+>>>>>>> e56b86bea8317faac8043e75ef875a6a5833547b
 </project>
