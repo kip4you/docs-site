@@ -40,7 +40,7 @@ Okay, now you have a field, repeat this process to create the fields you want, b
 
 ### Variable types
 
-For the form fields we have some types to choose from, but new types will still be added, para alternar entre eles, clique no campo que você deseja e abra o select de type
+For the form fields we have some types to choose from, but new types will still be added, to change between them, click in the field where you want and select type
 
 #### String
 
@@ -49,6 +49,24 @@ For the form fields we have some types to choose from, but new types will still 
 This configuration field is the same as shown in the previous section and appears as follows on the page:
 
 ![Page String](assets/images/dynamic-forms/type_string.png)
+
+#### Long
+
+This field type looks similar to the previous one, but as the name suggests this field is used for numbers, below we can see what it looks like:
+
+![Page Long](assets/images/dynamic-forms/type_long.png)
+
+#### Boolean
+
+The boolean field type doesn't have any secrets, when you select it this will display a switch to choose the value of the field between true or false, as you can see bellow:
+
+![Page Boolean](assets/images/dynamic-forms/type_boolean.png)
+
+#### Date
+
+This field type as the name suggests will display a date picker field to choose a date and this is what it looks like:
+
+![Page Date](assets/images/dynamic-forms/type_date.png)
 
 #### Enum
 
@@ -68,9 +86,9 @@ Remember that if you are going to do some verification on a gateway or **if you 
 
 #### Custom Type
 
-The Custom Type for now has two values available, one for attachments and one for notes, let's take a look at them 
+The Custom Type for now has three types available, one for attachments, one for notes and other for text area field, let's take a look at them 
 
-##### Akip Notes
+#### Akip Notes
 
 This type is a field where it is possible to enter notes separately, first let's take a look at the configuration
 
@@ -84,9 +102,17 @@ How it will look on the page:
 ![Page Akip Notes 2](assets/images/dynamic-forms/page_akip_notes_2.png)
 ![Page Akip Notes 2](assets/images/dynamic-forms/page_akip_notes_3.png)
 
-the "Type" area I will explain later in the *properties* section
+###### In Start Form
+If you use the Akip Notes in the start form, you need to keep the property field without scope defined, this is because at the moment you start a process the init **does not have the process instance** created. When you initiate the start form, a **temporary process instance** is created to store any attachments or notes you insert for the next tasks, of course, if you choose to do so.
 
-##### Akip Attachments
+###### In Tasks
+In the other hand if you use in tasks after the start form you need to specify in the property section the scope with **ProcessInstance**.
+
+![Page Akip Notes processInstance](assets/images/dynamic-forms/processInstanceAkipNote.png)
+
+The "Type" area I will explain later in the *properties* section
+
+#### Akip Attachments
 
 This field works more or less like Akip Notes with the difference that they are not notes but attachments, let's see the configuration
 
@@ -97,9 +123,48 @@ It is practically the same configuration as Akip Notes with the difference that 
 How it looks on the page:
 
 ![Page Akip Attachments 1](assets/images/dynamic-forms/page_akip_attachments_1.png)
+
 ![Page Akip Attachments 2](assets/images/dynamic-forms/page_akip_attachments_2.png)
 
+###### In Start Form
+If you use the Akip Attachments in the start form, you need to keep the property field without scope defined, this is because at the moment you start a process the init **does not have the process instance** created. When you initiate the start form, a **temporary process instance** is created to store any attachments or notes you insert for the next tasks, of course, if you choose to do so.
+
+###### In Tasks
+In the other hand if you use in tasks after the start form you need to specify in the property section the scope with **ProcessInstance**.
+
+![Page Akip Notes processInstance](assets/images/dynamic-forms/processInstanceAkipNote.png)
+
+###### Minio
 Just remembering that here it is necessary to configure some storage of objects such as minio for example, this configuration can be seen in the specific section of attachments
+
+#### Text Area
+
+The Text Area field you will need to select type custom after creating a field in Form Fields section, them you will need to write "TextArea" to bring it.
+
+This is how text area looks like using dynamic forms:
+
+![Page Text Area](assets/images/dynamic-forms/type_text-area.png)
+
+### Default Value
+
+Accessing the field you want you will see an input called Default Value, this allows you to start your field in some value.
+
+![Page Default Value](assets/images/dynamic-forms/default_value.png)
+  
+The Default Value can be applied to:
+  - string
+  - long
+  - enum
+  - boolean
+  - date
+  - TextArea
+
+Here is an example:
+
+![Page Default Value](assets/images/dynamic-forms/default_value_test.png)
+
+![Page Default Value input](assets/images/dynamic-forms/default_value_input.png)
+
 
 ### Properties
 
@@ -111,13 +176,29 @@ As the forms are not customized in the frontend or backend code, some customizat
 
 This is very useful when in a task you want the user to only see previously entered information.
 
+This property only works for some types of fields like (if you try the property disabled for the same purpose, this is not going to work):
+  - string
+  - long
+  - AkipNotesField
+  - AkipAttachmentsField
+  - TextArea
+
 ![Propertie Readonly](assets/images/dynamic-forms/propertie_readonly.png)
 
 How it looks on the page:
 
 ![Page Readonly](assets/images/dynamic-forms/page_readonly.png)
 
-#### disable
+#### disabled
+
+Similar to the readonly property this one leaves the field disabled, to only see previous information.
+
+It's important to say that this property only works for a few types of fields (if you use readonly for the same purpose, this is not going to work):
+  - boolean
+  - date
+  - enum
+
+![Page Disabled](assets/images/dynamic-forms/disabled.png)
 
 #### noteTypes
 
