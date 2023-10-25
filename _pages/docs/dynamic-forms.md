@@ -88,9 +88,11 @@ Remember that if you are going to do some verification on a gateway or **if you 
 
 The Custom Type for now has three types available, one for attachments, one for notes and other for text area field, let's take a look at them 
 
-#### Akip Notes
+#### Akip Notes in start form
 
 This type is a field where it is possible to enter notes separately, first let's take a look at the configuration
+
+If you use the Akip Notes in the start form, you need to keep the property field without scope defined, this is because at the moment you start a process the init **does not have the process instance** created. When you initiate the start form, a **temporary process instance** is created to store any attachments or notes you insert for the next tasks, of course, if you choose to do so.
 
 ![Type Akip Notes](assets/images/dynamic-forms/type_akip_notes.png)
 
@@ -102,19 +104,20 @@ How it will look on the page:
 ![Page Akip Notes 2](assets/images/dynamic-forms/page_akip_notes_2.png)
 ![Page Akip Notes 2](assets/images/dynamic-forms/page_akip_notes_3.png)
 
-###### In Start Form
-If you use the Akip Notes in the start form, you need to keep the property field without scope defined, this is because at the moment you start a process the init **does not have the process instance** created. When you initiate the start form, a **temporary process instance** is created to store any attachments or notes you insert for the next tasks, of course, if you choose to do so.
-
 ###### In Tasks
-In the other hand if you use in tasks after the start form you need to specify in the property section the scope with **ProcessInstance**.
+In the other hand if you use in tasks after the start form you need to specify in the property section the scope with **ProcessInstance** and the name that you will call it in the custom type is **AkipNotesTaskInstanceField**.
+
+![Page Akip Notes name](assets/images/dynamic-forms/akip-notes-task-instance.png)
 
 ![Page Akip Notes processInstance](assets/images/dynamic-forms/processInstanceAkipNote.png)
 
 The "Type" area I will explain later in the *properties* section
 
-#### Akip Attachments
+#### Akip Attachments in start form
 
 This field works more or less like Akip Notes with the difference that they are not notes but attachments, let's see the configuration
+
+If you use the Akip Attachments in the start form, you need to keep the property field without scope defined, this is because at the moment you start a process the init **does not have the process instance** created. When you initiate the start form, a **temporary process instance** is created to store any attachments or notes you insert for the next tasks, of course, if you choose to do so.
 
 ![Type Akip Attachments](assets/images/dynamic-forms/type_akip_attachments.png)
 
@@ -126,13 +129,12 @@ How it looks on the page:
 
 ![Page Akip Attachments 2](assets/images/dynamic-forms/page_akip_attachments_2.png)
 
-###### In Start Form
-If you use the Akip Attachments in the start form, you need to keep the property field without scope defined, this is because at the moment you start a process the init **does not have the process instance** created. When you initiate the start form, a **temporary process instance** is created to store any attachments or notes you insert for the next tasks, of course, if you choose to do so.
-
 ###### In Tasks
-In the other hand if you use in tasks after the start form you need to specify in the property section the scope with **ProcessInstance**.
+In the other hand if you use in tasks after the start form you need to specify in the property section the scope with **ProcessInstance** and the name that you will call it in the custom type is **AkipAttachmentsTaskInstanceField**..
 
-![Page Akip Notes processInstance](assets/images/dynamic-forms/processInstanceAkipNote.png)
+![Page Akip Attachments name](assets/images/dynamic-forms/akip-attachments-task-instance.png)
+
+![Page Akip Attachments processInstance](assets/images/dynamic-forms/processInstanceAkipNote.png)
 
 ###### Minio
 Just remembering that here it is necessary to configure some storage of objects such as minio for example, this configuration can be seen in the specific section of attachments
