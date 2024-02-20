@@ -4,55 +4,70 @@ permalink: /timeline
 last_modified_at: 2024-02-19
 toc: true
 sidebar:
-nav: "docs"
+  nav: "docs"
 ---
 
 # Timeline
 
-## O que é a Timeline?
+## What is the timeline?
 
-A timeline é uma recurso que visa facilitar a visualização de um processo como um todo, permitindo assim usuários com menos conhecimento em BPNM poderem entender o andamento do processo de maneira linear, acompanhando a tarefa que está em andamento, as finalizadas e as tarefas que faltam finalizar.
+The timeline is a tool designed to simplify the visualization of a process as a whole, enabling users with less familiarity in BPMN to understand the progress of the process in a linear manner. This allows tracking of ongoing tasks, completed tasks, and those that are still pending.
 
-## Como utilizar a timeline?
+## How to use the timeline?
 
-### 1. Acessando a timeline de um processo
+### 1. Accessing the timeline of a process
 
-Para podermos configurar a timeline, precisamos primeiro decidir qual o processo e acessar a listagem e configuração, através da tela de Process Definitions no botão timelines.
+To set up the timeline, you first need to decide which process it will be used for and then access the listing and configuration through the Process Definition screen, located under the 'Timelines' button.
 
-<b>POR FOTO DA PROCESS DEFINITION MOSTRANDO O BOTÃO TIMELINES</b>
+#### Button Timelines
+![Button timelines](assets/images/timeline/button-timelines.png)
 
 ### 2. Timelines
 
-Ao acessar o botão somos levados para uma página em que são listadas informações das timelines criadas para aquele processo, podendo visualizar, editar e excluir uma determinada timeline. Caso queira configurar uma nova timeline, clicamos no botão "Create a new timeline".
-
-<b> POR FOTO DA TELA EM GERAL</b>
-
-<b> TELA DE VISUALIZAR </b>
-
-<b> TELA DE EDITAR </b>
-
-<b> TELA DE EXCLUIR </b>
-
-<b> MOSTRAR BOTÃO PARA CONFIGURAR TIMELINE </b>
-
-### 3. Criação de uma nova timeline
-
-Na página de criação da timeline devemos dar foco para algumas informações que constam na tela.
-
-Primeiramente no canto direito da página podemos visualizar as Tasks Definition Keys, ou seja estes são todos os IDs de tarefas que estão inclusas em seu BPMN, podendo também utilizar o botão para copiar o nome dela, para uso que vou comentar logo adiante.
-
-<b> POR FOTO DANDO FOCO PARA OS TASK DEFINITION KEY</b>
-
-Abaixo da listagem de Task Definition Key temos alguns exemplos de expressões que poderemos montar nossa timeline, sendo assim temos diferentes maneiras de representar um passo na timeline podendo por exemplo ser somente uma tarefa como foco para aquele passo, ou tarefas com condicinais "AND" e "OR", podendo utilizar de parênteses para inclusão de mais de uma task. Dessa maneira podemos resumir e simplificar o entendimento de um processo que seria complexo em algo de agradável visualização.
-
-<b> POR FOTO DOS EXEMPLOS QUE TEM NA PÁGINA OU MONTAR UNS EXEMPLOS DE EXPRESSÕES </b>
-
-Seguindo para criação da timeline temos dois campos iniciais que a primeira que é o Timeline Name, como o nome diz informamos um nome sugestivo para a timeline e o segundo campo é o Timeline Condition, neste campo botamos uma expressão que determinará outros fluxos de tarefas que queremos seguir na timeline. Como a visualização da timeline é linear temos que definir estes outros fluxos para que quando determinada Timeline Condition seja atendida a visualização mude para atender a determinado fluxo.
-
-<b> TENTAR POR UMA IMAGEM DEMONSTRANDO </b>
-
-<b> É importante lembrar que a primeira timeline não precisará incluir um Timeline Condition já que nela será definido um fluxo default para o processo. </b>
-
-<b> por a criação de uma timeline default e uma com conditions </b>
+When you click the button, you'll be directed to a page listing the information of the timelines created for that process. On this page, you can <b>view</b>, <b>edit</b>, and <b>delete</b> a specific timeline. If you wish to configure a new timeline, simply click on the 'Create a new timeline' button.
 
 
+#### Timelines page
+![Timelines page](assets/images/timeline/timelines-page.png)
+
+#### Timeline view
+![Timelines view](assets/images/timeline/timeline-view.png)
+
+#### Timeline edit
+![Timelines edit](assets/images/timeline/timeline-edit.png)
+
+#### Timeline delete
+![Timelines delete](assets/images/timeline/timeline-remove.png)
+
+### 3. Creating a new timeline
+
+On the timeline creation page, we should focus on certain information displayed on the screen.
+
+Firstly, on the right-hand side of the page, you can view the Task Definition Keys, which are the IDs of all tasks included in your BPMN. Additionally, you can use the button to copy the task name for use as I'll mention next.
+
+#### Task Definition Key
+![Timelines delete](assets/images/timeline/timeline-task-definition-key.png)
+
+Below the Task Definition Keys listing, we find various examples of expressions that can be used to construct our timeline. Thus, we have different ways to represent a step in the timeline, which can be a single task as a focus for that step, or tasks with <b>'AND'</b> and <b>'OR'</b> conditions, <b>with the option to use parentheses to include more than one task</b>. This variety of options allows us to summarize and simplify the understanding of a process that would otherwise be complex, making it more easily understandable and visually appealing.
+
+#### Timeline Expression Examples
+![Timelines examples](assets/images/timeline/timeline-examples.png)
+
+To create the timeline, we have two initial fields. The first one is the <b>"Timeline Name"</b>, where you provide a suggestive name to identify the timeline. The second field is <b>"Timeline Condition"</b>, where you insert an expression that determines other task flows you want to follow in the timeline. Since the visualization of the timeline is linear, it is necessary to define these other flows so that <b>when a specific condition of the timeline is met, the visualization changes to follow a specific flow.</b>
+
+<b> It's important to remember that the first timeline doesn't need to include a timeline condition, as it will define a default flow for the process. </b>
+
+#### Timeline Default Creation
+![Timelines default](assets/images/timeline/timeline-default-creation.png)
+
+#### Timeline with timeline Condition
+![Timelines with condition](assets/images/timeline/timeline-with-condition.png)
+
+### 4. Timeline visualization in a process
+
+To visualize the timeline, simply access the process instance for which a timeline has been created, and it will load the timeline horizontally, showing the progress of the process linearly.
+
+#### Example of a timeline working
+![Timelines examples](assets/images/timeline/timeline-process-instance.png)
+
+The blue point one indicates that the task has been assigned to someone and is in <b>progress</b>. The green point indicates that the task has been <b>completed</b>, and finally, the gray point indicates that the task has <b>not yet started</b>.
