@@ -9,12 +9,16 @@ sidebar:
 
 # Basic Dashboards
 
-The platform has 4 dashboard groups.
+The platform currently has 4 dashboard groups with information related to process instances metrics, process tenants, average unassigned task time, and average task completion time.
 
 ### Group 1: Boxes
 
-### Group 2: ...
+The first one is the boxes, by default, the project comes with a component on the dashboard containing 6 boxes with information on Process Instances Metrics. Among this information, we have how many processes were created, how many processes are active, how many processes were canceled, how many processes were completed, the mean time to completion, and the total of this.
 
-### Group 3: ...
+![Boxes](assets/images/dashboard-basic/boxes.png)
+
+### Group 2: Charts
+
+### Group 3: Tables
 
 ### Group 4: ...
