@@ -38,7 +38,7 @@ public class TravelPlanDashboardBoxGroupBuilder extends DashboardBoxGroupBuilder
 
 ### `DashboardBoxGroupBuilder` interface
 
-To create a component that uses boxes, it is necessary to extend the <b>DashboardBoxGroupBuilder</b> class, thus implementing the buildGroup method, which will grant access to the definition of a <b>BoxGroupModel.</b>
+To create a component that uses <b>boxes</b>, it is necessary to extend the <b>DashboardBoxGroupBuilder</b> class, thus implementing the buildGroup method, which will grant access to the definition of a <b>BoxGroupModel.</b>
 
 Initially, we define a new <b>boxGroupModel</b> already specifying the title of the card containing the boxes, to facilitate customization, this title will come directly from the <b>groupConfig</b>, where the title will be defined as shown in the <b>Examples</b> section.
 
@@ -82,7 +82,59 @@ This is the result:
 
 ![Result boxes](assets/images/dashboard-advanced/dashboard-advanced-box.png)
 
-### `DashboardTableGroupBuilder` interface
+### `DashboardChartGroupBuilder` interface
+
+To create a component that uses table, <b>bar chart and pie chart</b>, it is necessary to extend the <b>DashboardCardGroupBuilder</b> class, thus implementing the buildGroup method, which will grant access to the definition of a <b>CardGroupModel</b>.
+
+```java
+ CardGroupModel cardGroupModel = new CardGroupModel().title(groupConfig.getTitle());
+```
+
+After creating the cardGroupModel we can start creating the table and charts as shown in the examples below:
+
+```java
+    cardGroupModel.getCards().add(buildCardModelTravelPlan(travelPlanInstances));
+        return cardGroupModel;
+```
+
+Here, the getCards() method is called, adding the information to be displayed in the table, bar chart, and pie chart. The buildCardModelTravelPlan method will be shown and explained below.
+
+```java
+  private CardModel buildCardModelTravelPlan(List<TravelPlan> travelPlanInstances){
+
+        CardModel card = new CardModel().title("Travel Plan Chart");
+
+        card.getTableModel().addHead("Travel Country").addHead("Trips");
+
+        Map<String, Long> countryCounts = travelPlanInstances.stream()
+            .collect(Collectors.groupingBy(TravelPlan::getName, Collectors.counting()));
+
+        for (String countryName : countryCounts.keySet()) {
+          TableRowModel tableRow = new TableRowModel();
+            if (countryName == null) {
+                tableRow.setTitle("No Travel");
+            } else {
+                tableRow.setTitle(countryName);
+            }
+            tableRow.addValue(new BigDecimal(countryCounts.getOrDefault(countryName, 0L)));
+            card.getTableModel().addRow(tableRow);
+        }
+
+        return card;
+}
+```
+
+In this method, initially, a list is passed which I want to use as a basis for assembling my information. In this example, I'm using the list of instances of the <b>Travel Plan process</b>.
+
+Firstly, a new CardModel is defined, providing a <b>title for the card</b>. Then, the columns of the table are defined. In this setup, it was decided to build the table and the charts with the names of the countries and the quantity of trips made to those countries. Then, a Map of String and Long is constructed to ensure that the country and the number of trips are not repeated. After that, the table is assembled properly through this loop, <b>defining each row of the table</b> and adding it to the card.
+
+![Dashboard card](assets/images/dashboard-advanced/dashboard-advanced-chart.png)
+
+![Dashboard table](assets/images/dashboard-advanced/dashboard-advanced-chart-table.png)
+
+![Dashboard bar chart](assets/images/dashboard-advanced/dashboard-advanced-bar-chart.png)
+
+![Dashboard pie chart](assets/images/dashboard-advanced/dashboard-advanced-pie-chart.png)
 
 ## Examples
 
