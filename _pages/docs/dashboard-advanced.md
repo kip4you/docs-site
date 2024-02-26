@@ -126,7 +126,7 @@ Here, the getCards() method is called, adding the information to be displayed in
 
 In this method, initially, a list is passed which I want to use as a basis for assembling my information. In this example, I'm using the list of instances of the <b>Travel Plan process</b>.
 
-Firstly, a new CardModel is defined, providing a <b>title for the card</b>. Then, the columns of the table are defined. In this setup, it was decided to build the table and the charts with the names of the countries and the quantity of trips made to those countries. Then, a Map of String and Long is constructed to ensure that the country and the number of trips are not repeated. After that, the table is assembled properly through this loop, <b>defining each row of the table</b> and adding it to the card.
+Firstly, a new CardModel is defined, providing a <b>title for the card</b>. Then, the columns of the table are defined. In this setup, it was decided to build the table and the charts with the names of the countries and the quantity of trips made to those countries (<b>But remember that you can build it with the information you want to present and according to the deployed process, allowing extensive customization</b>). Then, a Map of String and Long is constructed to ensure that the country and the number of trips are not repeated. After that, the table is assembled properly through this loop, <b>defining each row of the table</b> and adding it to the card.
 
 ![Dashboard card](assets/images/dashboard-advanced/dashboard-advanced-chart.png)
 
