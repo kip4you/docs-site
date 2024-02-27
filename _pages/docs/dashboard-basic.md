@@ -56,7 +56,3 @@ In this example we can see 2 tasks Choose a Flight of the Travel Plan Process:
 ![Task chart 01](assets/images/dashboard-basic/dashboard-basics-task-chart-1.png)
 
 ![Task chart 02](assets/images/dashboard-basic/dashboard-basics-task-chart-2.png)
-
-### Group 3: Tables
-
-### Group 4: ...
