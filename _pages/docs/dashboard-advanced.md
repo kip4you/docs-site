@@ -36,6 +36,15 @@ public class TravelPlanDashboardBoxGroupBuilder extends DashboardBoxGroupBuilder
 }
 ```
 
+The parameter coming from the DashboardRequestModel contains some information that is relevant for assembling the GroupBuilder, accessed through getters and setters. We have information related to:
+
+<li>interval:</li> Interval of days of the process, which can vary from today, yesterday, 2 days ago, 7 days ago, 15 days ago, 30 days ago, 90 days ago, 180 days ago, 365 days ago, last week, and last month.
+<li>startDate:</li>
+<li>endDate:</li>
+<li>processDefinition:</li> Process Definition with information from the deployed BPMN.
+<li>startDateTime:</li>
+<li>endDateTime:</li>
+
 ### `DashboardBoxGroupBuilder` interface
 
 To create a component that uses <b>boxes</b>, it is necessary to extend the <b>DashboardBoxGroupBuilder</b> class, thus implementing the buildGroup method, which will grant access to the definition of a <b>BoxGroupModel.</b>
@@ -74,6 +83,33 @@ This example is a bit more complex than the previous one, but basically it serve
             boxGroupModel.addBox(
                 new BoxModel().title("Total days traveled").variant("secondary").value(String.valueOf(travelTotalDuration.toDays()))
             );
+```
+
+In these examples, we check the difference between the start date of the trip and the end date, counting how many trips lasted only 1 day, as well as checking if the trip's start date is greater than the date coming from the dashboard result.
+
+```java
+    boxGroupModel.addBox(
+        new BoxModel()
+            .title("Trips of up to 1 day")
+            .variant("warning")
+            .value(
+                String.valueOf(
+                    travelPlanInstances
+                        .stream()
+                        .filter(
+                            travelPlanInstance ->
+                                Duration
+                                    .between(
+                                      travelPlanInstance.getStartDate().atStartOfDay(),
+                                      travelPlanInstance.getEndDate().atStartOfDay()
+                                    )
+                                    .toDays() ==
+                                1 && travelPlanInstance.getStartDate().isAfter(ChronoLocalDate.from(dashboardRequest.getStartDateTime()))
+                        )
+                        .count()
+                )
+            )
+        );
 ```
 
 And finally, we just need to <b>return the boxGroupModel</b>.
@@ -154,6 +190,20 @@ We can also change the order in which each component will be presented by clicki
 
 ![Dashboard add group](assets/images/dashboard-advanced/dashboard-advanced-add-component.png)
 
+### Calendar Properties
 
+This calendar is located on the same settings page as the groups in the dashboard, at the bottom of the page. Upon clicking to open it, you will find a text area defining the days of the week and their corresponding hours. These hours are respectively used to **set the business hours for the process in question**; changing these hours will affect the measurement of the **Mean Unassigned Time (Business Hour)** and **Mean Time to Completion (Business Hours)**.
 
+![Calendar Properties](assets/images/dashboard-advanced/dashboard-calendar-properties.png)
 
+Therefore, we can edit the **hours** according to the defined Business Hours of the process, **or even the days of the week**, **allowing us to leave a day blank** if we do not want to include it in the Business Hours of the process.
+
+![Calendar Properties Custom](assets/images/dashboard-advanced/dashboard-advanced-calendar-custom.png)
+
+Another option we have is the creation of **holidays** for specific dates. When the designated holiday arrives, **the business hours for that period will not be counted** towards the parameters already defined in the system for **measuring business hours**. To create a holiday, you need to write **"holiday."** + **"the name of the holiday"** followed by **"="** and the **date you want**. It is important to note that the date format is **"day/month/year"**:
+
+![Calendar Properties Holiday](assets/images/dashboard-advanced/dashboard-calendar-holiday.png)
+
+As you can see, upon reaching the designated holiday date, any task taken on that day will not be counted in the column related to business hours.
+
+![Calendar Properties Holiday Business Hour](assets/images/dashboard-advanced/dashboard-calendar-holiday-business.png)

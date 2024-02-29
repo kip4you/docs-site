@@ -83,19 +83,25 @@ The variable from the messageApi can be used to utilize the getMessage method, w
 Here we have an example of a Groovy dashboard on the fly using the variable from hqlApi to query the database and bring information to our dashboard. For this, as seen previously in the Group Builder field of dashboard creation, we put the name **akipDashboardCustomBoxGroupBuilder** and fill the **Group Builder Expression** with the following Groovy code for example:
 
 ```groovy
-def resultList = []
+import java.time.LocalDate
+import java.time.LocalDateTime
+import java.time.format.DateTimeFormatter
 
-resultList = hqlApi.findList("SELECT tp.startDate, tp.name FROM TravelPlan tp")
+LocalDateTime startDateTime = dashboardRequest.getStartDateTime()
+
+LocalDate startDate = startDateTime.toLocalDate()
+
+String formattedStartDate = startDate.format(DateTimeFormatter.ofPattern("yyyy-MM-dd"))
+
+def query = "SELECT tp.startDate, tp.name FROM TravelPlan tp WHERE tp.startDate >= '" + formattedStartDate + "'"
+
+def resultList = hqlApi.findList(query)
 
 List<Map<String, Object>> boxes = new ArrayList<>()
-
 resultList.each { result ->
-
   Map<String, Object> box = new HashMap<>()
-
   box.put("title", result[1])
   box.put("value", "Start ${result[0]}")
-
   boxes.add(box)
 }
 
@@ -105,9 +111,3 @@ return boxes
 The result of the Groovy script is this component for the dashboard:
 
 ![Advanced Box](assets/images/dashboard-on-the-fly/dashboard-on-the-fly-box-groovy.png)
-
-
-
-
-
-
