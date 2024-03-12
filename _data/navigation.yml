@@ -49,5 +49,7 @@ docs:
         url: /subprocess
       - title: "Anonymous Task"
         url: /anonymous-task
+      - title: "Akip Prompt Configuration"
+        url: /akip-prompt-configuration
 
 
